@@ -60,12 +60,27 @@
 
   var ordenavel = new Sortable(elementoDOM, {
       animation: 150,
-      // ghostClass: 'bgSortable',
-      // chosenClass: "bgChosen",  
-      // dragClass:  "bgDrag",
-      direction: 'horizontal'
+      filter: '.filtered',
+      ghostClass: 'bgSortable',
+      chosenClass: "bgChosen",  
+      dragClass:  "bgDrag",
+      direction: 'horizontal',
+      onMove: (evt, originalEvt) => {
+        var retorno ;
+        console.log("fodasse filha da putta");
+        evt.related.classList.contains("imutavel") ?  retorno = -1 : console.log("VAI TOMA NO CU CARALLLHO");
+        console.log(evt);
+        if (retorno == -1) return -1;
+        return;
+      }
   });
 
+}
+
+  function fixposition(){
+    debugger;
+
+    //console.log(document.getElementById("item2").style.cssText = document.getElementById("item2").style.top + '!important');
   }
 
 </script>
@@ -105,7 +120,7 @@
 
     .item{
       margin-right: 5px;
-    }    
+    }
 
 </style>
 <body>
@@ -124,13 +139,16 @@
     </ul>
 
     <ul id="naointeressa" class="lista">
-      <li class="item">
+      <li class="item" id="item1">
+        <button>Pin</button>
         <img width="240px" height="160px" id="previewImg1" style="display:block; object-fit: contain;">  
       </div>
-      <li class="item">
+      <li class="item" id="item2">
+        <button onclick="fixposition()">Pin</button>
         <img width="240px" height="160px" id="previewImg2" style="display:block; object-fit: contain;">
       </div>
-      <li class="item">
+      <li class="item imutavel" id="item3">
+        <button>Pin</button>
         <img width="240px" height="160px" id="previewImg3" style="display:block; object-fit: contain;">
       </div>
     </ul>
