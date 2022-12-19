@@ -82,6 +82,10 @@
 function pin(el){
   console.log(el);
   var iteravel = 0;
+  if(el.classList.contains('imutavel')){
+    el.classList.toggle('imutavel');
+    return;
+  }
   [].forEach.call(el.parentNode.children, function(child) {
     if(iteravel != -1){
       if(!child.classList.contains('imutavel')){
@@ -162,15 +166,15 @@ function pin(el){
 
     <ul id="naointeressa" class="lista">
       <li class="item imutavel azul" id="item1">
-        <button>Pin</button>
+        <button onclick="pin(this.parentNode)">Pin</button>
         <img width="240px" height="160px" id="previewImg1" style="display:block; object-fit: contain;">  
       </li>
       <li class="item verde" id="item2">
-        <button>Pin</button>
+        <button onclick="pin(this.parentNode)">Pin</button>
         <img width="240px" height="160px" id="previewImg2" style="display:block; object-fit: contain;">
       </li>
       <li class="item vermelho" id="item3">
-        <button>Pin</button>
+        <button onclick="pin(this.parentNode)">Pin</button>
         <img width="240px" height="160px" id="previewImg3" style="display:block; object-fit: contain;">
       </li>
       <li class="item white" id="item4">
