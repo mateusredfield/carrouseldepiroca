@@ -11,16 +11,16 @@
 
   window.addEventListener('load', function(){
  
-    for(var i = 1; i < 4; i++){
+    for(var i = 1; i < 5; i++){
 
-        var fileDrag      = document.getElementById('previewImg'+i);
+        var fileDrag      = document.getElementById('item'+i);
 
         //fileSelect.addEventListener('change', fileSelectHandler, false);
         fileDrag.addEventListener('dragover', fileDragHover, false);
         fileDrag.addEventListener('dragleave', fileDragHover, false);
         fileDrag.addEventListener('drop', fileSelectHandler, false);
     }
-    naointeressa();
+    initLib();
   })
 
   function fileDragHover(e) {
@@ -36,28 +36,18 @@
 
     e.stopPropagation();
     e.preventDefault();
-    
-    document.getElementById(e.currentTarget.id).src = URL.createObjectURL(files[0]);
-    document.getElementById(e.currentTarget.id).style.display = "block";
+
+    // console.log(document.getElementById(e.currentTarget.id).src);
+    // console.log(document.getElementById(e.currentTarget.id).style.display);
+    document.getElementById(e.currentTarget.id+'Img').src = URL.createObjectURL(files[0]);
+    document.getElementById(e.currentTarget.id+'Img').style.display = "block";
+    document.getElementById(e.currentTarget.id+'Img').style.visibility = "visible";
   }
 
-  function naointeressa(){
+  function initLib(){
 
-
-    var el = document.getElementById('items');
-    //var sortable = Sortable.create(el);
-
-  var sortable = new Sortable(el, {
-      animation: 150,
-      // ghostClass: 'bgSortable',
-      // chosenClass: "bgChosen",  
-      // dragClass:  "bgDrag",
-      direction: 'horizontal'
-  });
-
-    var elementoDOM = document.getElementById('naointeressa');
-    //var ordenavel = Sortable.create(el);
-
+    var elementoDOM = document.getElementById('listaDeElementos');
+    
   var ordenavel = new Sortable(elementoDOM, {
       animation: 150,
       filter: '.imutavel',
@@ -70,7 +60,6 @@
         console.log("nao funciona");
         evt.related.classList.contains("imutavel") ?  retorno = -1 : console.log("nao funciona");
         console.log(evt);
-        //debugger;
         if (retorno == -1) return false;
         return;
       }
@@ -98,7 +87,11 @@ function pin(el){
   });
 }
 
-
+function eraseImg(id){
+  //document.getElementById(id).removeAttribute('src');
+  document.getElementById(id).src = "";
+  document.getElementById(id).style.visibility = "hidden";
+}
 
 </script>
 <style>
@@ -131,15 +124,9 @@ function pin(el){
     .bgDrag{
       background: lightsalmon;
     }
-    /* .sortable-ghost{
-      background: lightsalmon;
-    } */
     .sortable-chosen{
       background: lightsalmon;
     }
-    /* .sortableDrag{
-      background: beige;
-    } */
 
     .lista{
       width: 90vw;
@@ -158,33 +145,27 @@ function pin(el){
 </style>
 <body>
 
-    <ul id="items" style="color:#ccc; padding-left: 0px;">
-      <li style="border:solid #444; margin-bottom: 3px; margin-left: 0px; list-style: none;">item 1</li>
-      <li style="border:solid #444; margin-bottom: 3px; margin-left: 0px; list-style: none;">item 2</li>
-      <li style="border:solid #444; margin-bottom: 3px; margin-left: 0px; list-style: none;">item 3</li>
-    </ul>
-
-    <ul id="naointeressa" class="lista">
-      <li class="item imutavel azul" id="item1">
+    <ul id="listaDeElementos" class="lista">
+      <li class="item azul" id="item1">
         <button onclick="pin(this.parentNode)">Pin</button>
-        <img width="240px" height="160px" id="previewImg1" style="display:block; object-fit: contain;">  
+        <button onclick="eraseImg('item1Img')">X</button>
+        <img width="240px" height="160px" id="item1Img" style="display:block; object-fit: contain;">  
       </li>
       <li class="item verde" id="item2">
         <button onclick="pin(this.parentNode)">Pin</button>
-        <img width="240px" height="160px" id="previewImg2" style="display:block; object-fit: contain;">
+        <button onclick="eraseImg('item2Img')">X</button>
+        <img width="240px" height="160px" id="item2Img" alt="" style="display:block; object-fit: contain;">
       </li>
       <li class="item vermelho" id="item3">
         <button onclick="pin(this.parentNode)">Pin</button>
-        <img width="240px" height="160px" id="previewImg3" style="display:block; object-fit: contain;">
+        <button onclick="eraseImg('item3Img')">X</button>
+        <img width="240px" height="160px" id="item3Img" style="display:block; object-fit: contain;">
       </li>
       <li class="item white" id="item4">
         <button onclick="pin(this.parentNode)">Pin</button>
-        <img width="240px" height="160px" id="previewImg4" style="display:block; object-fit: contain;">
+        <button onclick="eraseImg('item4Img')">X</button>
+        <img width="240px" height="160px" id="item4Img" style="display:block; object-fit: contain;">
       </li>
-      <!-- <li class="item" id="item5">
-        <button>Pin</button>
-        <img width="240px" height="160px" id="previewImg5" style="display:block; object-fit: contain;">
-      </li> -->
     </ul>
 
 </body>
