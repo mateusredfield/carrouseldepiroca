@@ -60,33 +60,62 @@
 
   var ordenavel = new Sortable(elementoDOM, {
       animation: 150,
-      filter: '.filtered',
+      filter: '.imutavel',
       ghostClass: 'bgSortable',
       chosenClass: "bgChosen",  
       dragClass:  "bgDrag",
       direction: 'horizontal',
       onMove: (evt, originalEvt) => {
-        var retorno ;
-        console.log("fodasse filha da putta");
-        evt.related.classList.contains("imutavel") ?  retorno = -1 : console.log("VAI TOMA NO CU CARALLLHO");
+        var retorno = 0;
+        console.log("nao funciona");
+        evt.related.classList.contains("imutavel") ?  retorno = -1 : console.log("nao funciona");
         console.log(evt);
-        if (retorno == -1) return -1;
+        //debugger;
+        if (retorno == -1) return false;
         return;
       }
   });
 
 }
 
-  function fixposition(){
-    debugger;
 
-    //console.log(document.getElementById("item2").style.cssText = document.getElementById("item2").style.top + '!important');
-  }
+function pin(el){
+  console.log(el);
+  var iteravel = 0;
+  [].forEach.call(el.parentNode.children, function(child) {
+    if(iteravel != -1){
+      if(!child.classList.contains('imutavel')){
+        child.parentNode.insertBefore(el, child);
+        el.classList.toggle('imutavel');
+        iteravel = -1;
+        console.log(el.classList);
+      }
+    }
+  });
+}
+
+
 
 </script>
 <style>
     body{
         background-color: #555;
+    }
+
+    .azul{
+      background-color: blue;
+    }  
+
+    .vermelho{
+      background-color: red;
+    }
+
+    .verde{
+      background-color: green;
+    }
+
+    .white{
+      background-color: lightsalmon;
     }
 
     .bgSortable{
@@ -124,13 +153,6 @@
 
 </style>
 <body>
-    
-    <!-- <img width="240px" height="160px" id="previewImg1" style="display:block; object-fit: contain;">
-    <br/>
-    <img width="240px" height="160px" id="previewImg2" style="display:block; object-fit: contain;">
-    <br/>
-    <img width="240px" height="160px" id="previewImg3" style="display:block; object-fit: contain;">
-    <br/> -->
 
     <ul id="items" style="color:#ccc; padding-left: 0px;">
       <li style="border:solid #444; margin-bottom: 3px; margin-left: 0px; list-style: none;">item 1</li>
@@ -139,18 +161,26 @@
     </ul>
 
     <ul id="naointeressa" class="lista">
-      <li class="item" id="item1">
+      <li class="item imutavel azul" id="item1">
         <button>Pin</button>
         <img width="240px" height="160px" id="previewImg1" style="display:block; object-fit: contain;">  
-      </div>
-      <li class="item" id="item2">
-        <button onclick="fixposition()">Pin</button>
+      </li>
+      <li class="item verde" id="item2">
+        <button>Pin</button>
         <img width="240px" height="160px" id="previewImg2" style="display:block; object-fit: contain;">
-      </div>
-      <li class="item imutavel filtered" id="item3">
+      </li>
+      <li class="item vermelho" id="item3">
         <button>Pin</button>
         <img width="240px" height="160px" id="previewImg3" style="display:block; object-fit: contain;">
-      </div>
+      </li>
+      <li class="item white" id="item4">
+        <button onclick="pin(this.parentNode)">Pin</button>
+        <img width="240px" height="160px" id="previewImg4" style="display:block; object-fit: contain;">
+      </li>
+      <!-- <li class="item" id="item5">
+        <button>Pin</button>
+        <img width="240px" height="160px" id="previewImg5" style="display:block; object-fit: contain;">
+      </li> -->
     </ul>
 
 </body>
