@@ -4,13 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <title>Document</title>
-</head>
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  </head>
+
 <script>
 
   window.addEventListener('load', function(){
  
+
+    const swiper = new Swiper('.swiper', {
+  // Optional parameters
+  direction: 'vertical',
+  loop: true,
+
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  // And if we need scrollbar
+  scrollbar: {
+    el: '.swiper-scrollbar',
+  },
+});
+
+
+
     for(var i = 1; i < 5; i++){
 
         var fileDrag      = document.getElementById('item'+i);
@@ -142,6 +170,11 @@ function eraseImg(id){
       margin-right: 5px;
     }
 
+    .swiper {
+      width: 600px;
+      height: 300px;
+    }
+
 </style>
 <body>
 
@@ -167,6 +200,70 @@ function eraseImg(id){
         <img width="240px" height="160px" id="item4Img" style="display:block; object-fit: contain;">
       </li>
     </ul>
+
+
+
+
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+        ...
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+    
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    
+      <!-- If we need scrollbar -->
+      <div class="swiper-scrollbar"></div>
+    </div>
+
+
+
+
+    
+<section id="carousel-noticias" class="pb-50">
+
+  <div class="container">
+      <div class="swiper carousel-noticias">
+          <h2 class="title-two">Notícias</h2>
+          <div class="swiper-wrapper">
+              <div class="swiper-slide carousel-noticias-item">
+                  <figure>
+                      <img src="pub.jpg" width="40" height="40">
+                      <figcaption>
+                          <a  href="#">Slider dedicado a noticias em destaque</a>
+                      </figcaption>
+                  </figure>
+              </div>
+              <div class="swiper-slide carousel-noticias-item">
+                  <figure>
+                      <img src="imagem.jpg" width="40" height="40">
+                      <figcaption>
+                          <a href="#">Slider dedicado a noticias em destaque</a>
+                      </figcaption>
+                  </figure>
+              </div>
+          </div>
+          <div class="swiper-custom-buttons">
+              <div class="swiper-button-next"></div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-prev"></div>
+          </div>
+      </div>
+
+  </div>
+
+</section>
+
+
+
 
 </body>
 </html>
